@@ -52,7 +52,7 @@ float FloatType::multiply( float lhs, float rhs )
 
 float FloatType::divide( float lhs, float rhs )
 {
-    return lhs / rhs;
+    return lhs / rhs; FIXME warn when rhs == 0.f
 }
 
 struct DoubleType
@@ -80,7 +80,7 @@ double DoubleType::multiply( double lhs, double rhs )
 
 double DoubleType::divide( double lhs, double rhs )
 {
-    return lhs / rhs;
+    return lhs / rhs; FIXME warn when rhs == 0.0
 }
 
 struct IntType
@@ -108,7 +108,7 @@ int IntType::multiply( int lhs, int rhs )
 
 int IntType::divide( int lhs, int rhs )
 {
-    return lhs / rhs;
+    return lhs / rhs; FIXME divide by integer zero causes abort()
 }
 
 #include <iostream>
@@ -117,6 +117,9 @@ int main()
     FloatType ft;
     DoubleType dt;
     IntType it;
+
+	//uncomment to see abort be called
+	// it.divide(1, 0);
 
     auto result = ft.add( 3.2f, 23.f );
     std::cout << "result of ft.add(): " << result << std::endl;
