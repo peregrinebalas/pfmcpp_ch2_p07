@@ -27,6 +27,13 @@
  Wait for my code review.
  */
 
+#include  <stdlib.h>
+#include <stdexcept>
+#include <limits>
+#include <iostream>
+
+using namespace std;
+
 struct FloatType
 {
     float add( float, float );
@@ -52,7 +59,15 @@ float FloatType::multiply( float lhs, float rhs )
 
 float FloatType::divide( float lhs, float rhs )
 {
-    return lhs / rhs; FIXME warn when rhs == 0.f
+    if (rhs == 0.f)
+    {
+        std::cout << "warning: Can't divide by 0." << std::endl;
+        return rhs;
+    }
+    else
+    {
+      return lhs / rhs; //FIXME warn when rhs == 0.0
+    }
 }
 
 struct DoubleType
@@ -80,7 +95,15 @@ double DoubleType::multiply( double lhs, double rhs )
 
 double DoubleType::divide( double lhs, double rhs )
 {
-    return lhs / rhs; FIXME warn when rhs == 0.0
+  if (rhs == 0.0)
+  {
+      std::cout << "warning: Can't divide by 0." << std::endl;
+      return rhs;
+  }
+  else
+  {
+    return lhs / rhs; //FIXME warn when rhs == 0.0
+  }
 }
 
 struct IntType
@@ -108,10 +131,11 @@ int IntType::multiply( int lhs, int rhs )
 
 int IntType::divide( int lhs, int rhs )
 {
-    return lhs / rhs; FIXME divide by integer zero causes abort()
+    if (rhs == 0) throw invalid_argument("Can't divide by 0.");
+    else return lhs / rhs;
 }
 
-#include <iostream>
+
 int main()
 {
     FloatType ft;
@@ -119,7 +143,7 @@ int main()
     IntType it;
 
 	//uncomment to see abort be called
-	// it.divide(1, 0);
+	//it.divide(1, 0);
 
     auto result = ft.add( 3.2f, 23.f );
     std::cout << "result of ft.add(): " << result << std::endl;
@@ -127,7 +151,7 @@ int main()
     std::cout << "result of ft.subtract(): " << result << std::endl;
     result = ft.multiply( 3.2f, 23.f );
     std::cout << "result of ft.multiply(): " << result << std::endl;
-    result = ft.divide( 3.2f, 23.f );
+    result = ft.divide( 3.2f, 0.f );
     std::cout << "result of ft.divide(): " << result << std::endl;
 
     result = dt.add( 3.2, 23.1 );
@@ -136,7 +160,7 @@ int main()
     std::cout << "result of dt.subtract(): " << result << std::endl;
     result = dt.multiply( 3.2, 23.1 );
     std::cout << "result of dt.multiply(): " << result << std::endl;
-    result = dt.divide( 3.2, 23.1 );
+    result = dt.divide( 3.2, 0 );
     std::cout << "result of dt.divide(): " << result << std::endl;
 
     result = it.add( 3, 23 );
