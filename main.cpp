@@ -129,7 +129,7 @@ int IntType::multiply( int lhs, int rhs )
 
 int IntType::divide( int lhs, int rhs )
 {
-    if (rhs == 0) abort();
+    if (rhs == 0) abort(); FIXME int division by 0 already aborts.  do something else like warn, and return 0.  
     else return lhs / rhs;
 }
 
