@@ -28,8 +28,6 @@
  */
 
 #include  <stdlib.h>
-#include <stdexcept>
-#include <limits>
 #include <iostream>
 
 using namespace std;
@@ -66,7 +64,7 @@ float FloatType::divide( float lhs, float rhs )
     }
     else
     {
-      return lhs / rhs; //FIXME warn when rhs == 0.0
+      return lhs / rhs;
     }
 }
 
@@ -102,7 +100,7 @@ double DoubleType::divide( double lhs, double rhs )
   }
   else
   {
-    return lhs / rhs; //FIXME warn when rhs == 0.0
+    return lhs / rhs;
   }
 }
 
@@ -131,8 +129,7 @@ int IntType::multiply( int lhs, int rhs )
 
 int IntType::divide( int lhs, int rhs )
 {
-	FIXME: exceptions are not allowed in audio plugins. find another solution for when rhs == 0
-    if (rhs == 0) throw invalid_argument("Can't divide by 0.");
+    if (rhs == 0) abort();
     else return lhs / rhs;
 }
 
