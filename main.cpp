@@ -131,6 +131,7 @@ int IntType::multiply( int lhs, int rhs )
 
 int IntType::divide( int lhs, int rhs )
 {
+	FIXME: exceptions are not allowed in audio plugins. find another solution for when rhs == 0
     if (rhs == 0) throw invalid_argument("Can't divide by 0.");
     else return lhs / rhs;
 }
