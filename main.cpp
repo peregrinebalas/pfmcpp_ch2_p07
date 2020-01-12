@@ -129,8 +129,15 @@ int IntType::multiply( int lhs, int rhs )
 
 int IntType::divide( int lhs, int rhs )
 {
-    if (rhs == 0) abort(); FIXME int division by 0 already aborts.  do something else like warn, and return 0.  
-    else return lhs / rhs;
+    if (rhs == 0)
+    {
+    std::cout << "error: Can't divide by 0." << std::endl;
+    return rhs;
+    }
+    else
+    {
+    return lhs / rhs;
+    }
 }
 
 
@@ -141,7 +148,7 @@ int main()
     IntType it;
 
 	//uncomment to see abort be called
-	//it.divide(1, 0);
+	it.divide(1, 0);
 
     auto result = ft.add( 3.2f, 23.f );
     std::cout << "result of ft.add(): " << result << std::endl;
