@@ -18,7 +18,7 @@
         auto result = ft.add(3.2f, 23.f );
  
  5) print out those results using std::cout:
-        std::cout "result of ft.add(): " << result << std::endl;
+        std::cout << "result of ft.add(): " << result << std::endl;
  
  6) After you finish defining each type/function, click the [run] button.  Clear up any errors or warnings as best you can.
  
@@ -27,8 +27,155 @@
  Wait for my code review.
  */
 
+#include  <stdlib.h>
 #include <iostream>
+
+using namespace std;
+
+struct FloatType
+{
+    float add( float, float );
+    float subtract( float, float );
+    float multiply( float, float );
+    float divide( float, float );
+};
+
+float FloatType::add( float lhs, float rhs )
+{
+    return lhs + rhs;
+}
+
+float FloatType::subtract( float lhs, float rhs )
+{
+    return lhs - rhs;
+}
+
+float FloatType::multiply( float lhs, float rhs )
+{
+    return lhs * rhs;
+}
+
+float FloatType::divide( float lhs, float rhs )
+{
+    if (rhs == 0.f)
+    {
+        std::cout << "warning: Can't divide by 0." << std::endl;
+        return rhs;
+    }
+    else
+    {
+      return lhs / rhs;
+    }
+}
+
+struct DoubleType
+{
+    double add( double, double );
+    double subtract( double, double );
+    double multiply( double, double );
+    double divide( double, double );
+};
+
+double DoubleType::add( double lhs, double rhs )
+{
+    return lhs + rhs;
+}
+
+double DoubleType::subtract( double lhs, double rhs )
+{
+    return lhs - rhs;
+}
+
+double DoubleType::multiply( double lhs, double rhs )
+{
+    return lhs * rhs;
+}
+
+double DoubleType::divide( double lhs, double rhs )
+{
+  if (rhs == 0.0)
+  {
+      std::cout << "warning: Can't divide by 0." << std::endl;
+      return rhs;
+  }
+  else
+  {
+    return lhs / rhs;
+  }
+}
+
+struct IntType
+{
+    int add( int, int );
+    int subtract( int, int );
+    int multiply( int, int );
+    int divide( int, int );
+};
+
+int IntType::add( int lhs, int rhs )
+{
+    return lhs + rhs;
+}
+
+int IntType::subtract( int lhs, int rhs )
+{
+   return lhs - rhs;
+}
+
+int IntType::multiply( int lhs, int rhs )
+{
+    return lhs * rhs;
+}
+
+int IntType::divide( int lhs, int rhs )
+{
+    if (rhs == 0)
+    {
+    std::cout << "error: Can't divide by 0." << std::endl;
+    return rhs;
+    }
+    else
+    {
+    return lhs / rhs;
+    }
+}
+
+
 int main()
 {
+    FloatType ft;
+    DoubleType dt;
+    IntType it;
+
+	//uncomment to see abort be called
+	it.divide(1, 0);
+
+    auto result = ft.add( 3.2f, 23.f );
+    std::cout << "result of ft.add(): " << result << std::endl;
+    result = ft.subtract( 3.2f, 23.f );
+    std::cout << "result of ft.subtract(): " << result << std::endl;
+    result = ft.multiply( 3.2f, 23.f );
+    std::cout << "result of ft.multiply(): " << result << std::endl;
+    result = ft.divide( 3.2f, 0.f );
+    std::cout << "result of ft.divide(): " << result << std::endl;
+
+    result = dt.add( 3.2, 23.1 );
+    std::cout << "result of dt.add(): " << result << std::endl;
+    result = dt.subtract( 3.2, 23.1 );
+    std::cout << "result of dt.subtract(): " << result << std::endl;
+    result = dt.multiply( 3.2, 23.1 );
+    std::cout << "result of dt.multiply(): " << result << std::endl;
+    result = dt.divide( 3.2, 0 );
+    std::cout << "result of dt.divide(): " << result << std::endl;
+
+    result = it.add( 3, 23 );
+    std::cout << "result of it.add(): " << result << std::endl;
+    result = it.subtract( 3, 23 );
+    std::cout << "result of it.subtract(): " << result << std::endl;
+    result = it.multiply( 3, 23 );
+    std::cout << "result of it.multiply(): " << result << std::endl;
+    result = it.divide( 3, 23 );
+    std::cout << "result of it.divide(): " << result << std::endl;
+
     std::cout << "good to go!" << std::endl;
 }
